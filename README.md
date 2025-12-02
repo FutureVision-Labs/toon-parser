@@ -14,6 +14,12 @@
 - **Better human readability** with indentation-based syntax
 - **Smaller file sizes** (~30-40% reduction)
 
+## 🌐 Live Demo
+
+**Try it now:** [https://futurevision-labs.github.io/toon-parser/](https://futurevision-labs.github.io/toon-parser/)
+
+Convert JSON to TOON and see real-time token reduction stats!
+
 ## 📦 Installation
 
 ```bash
