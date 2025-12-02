@@ -6,7 +6,7 @@ Hey Alexey! 🚀
 
 This is BRILLIANT! We've been working on similar token-efficient formats for our narrative/game projects, and TOON hits all the right notes. 
 
-We just open-sourced our TOON parser/converter implementation: https://github.com/FutureVisionLabs/toon-parser
+We just open-sourced our TOON parser/converter implementation: https://github.com/FutureVision-Labs/toon-parser
 
 **Real-world results we're seeing:**
 - The Imaginatorium (narrative format): 45% token reduction
@@ -26,7 +26,7 @@ Amazing work! 🎯
 
 We built a TOON parser/converter and are seeing **30-60% token reduction** across our projects. The readability improvement alone makes it worth it.
 
-Open-sourced here: https://github.com/FutureVisionLabs/toon-parser
+Open-sourced here: https://github.com/FutureVision-Labs/toon-parser
 
 Real-world use cases:
 - Narrative/event storage (45% reduction)
@@ -44,7 +44,7 @@ Hi Alexey!
 
 This is exactly what we needed! We've been experimenting with token-efficient formats for our AI-driven projects, and TOON solves so many problems we've been hitting.
 
-**We've open-sourced our implementation:** https://github.com/FutureVisionLabs/toon-parser
+**We've open-sourced our implementation:** https://github.com/FutureVision-Labs/toon-parser
 
 **Our real-world results:**
 
@@ -82,7 +82,7 @@ Hey! 👋
 
 This is SO cool! We've been building something similar for our projects and TOON is hitting all the right notes.
 
-Just open-sourced our parser: https://github.com/FutureVisionLabs/toon-parser
+Just open-sourced our parser: https://github.com/FutureVision-Labs/toon-parser
 
 We're seeing **30-60% token reduction** across our projects:
 - Narrative storage: 45% reduction
