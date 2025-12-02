@@ -1,0 +1,35 @@
+{
+  "name": "toon-parser",
+  "version": "1.0.0",
+  "description": "Token-Oriented Object Notation parser and converter - A more efficient, human-readable alternative to JSON",
+  "main": "src/toon-converter.js",
+  "scripts": {
+    "test": "node test/toon-test.js",
+    "example": "node examples/basic-example.js"
+  },
+  "keywords": [
+    "toon",
+    "json",
+    "parser",
+    "converter",
+    "data-format",
+    "serialization",
+    "token-efficient",
+    "ai",
+    "llm"
+  ],
+  "author": "FutureVision Labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FutureVisionLabs/toon-parser.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FutureVisionLabs/toon-parser/issues"
+  },
+  "homepage": "https://github.com/FutureVisionLabs/toon-parser#readme",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
+
