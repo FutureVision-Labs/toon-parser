@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TOON Parser & Converter - Live Demo</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/FutureVision-Labs/CURSY-Framework@main/cursy.css">
+  <style>
+    :root {
+      --slatec-900: #020617;
+      --slatec-800: #0f172a;
+      --slatec-700: #1e293b;
+      --slatec-600: #334155;
+      --slatec-400: #94a3b8;
+      --slatec-100: #f1f5f9;
+      --cursy-green-400: #22c55e;
+      --cursy-cyan-400: #22d3ee;
+      --cursy-purple-400: #a855f7;
+      --cursy-orange-400: #f97316;
+    }
+    
+    body {
+      background: var(--slatec-900);
+      color: var(--slatec-100);
+      min-height: 100vh;
+      padding: 2rem 0;
+    }
+    
+    .demo-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .hero {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem 0;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--cursy-green-400), var(--cursy-cyan-400), var(--cursy-purple-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .converter-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .converter-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .converter-panel {
+      background: var(--slatec-800);
+      border: 1px solid var(--slatec-700);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    
+    .converter-panel h2 {
+      margin-bottom: 1rem;
+      color: var(--cursy-cyan-400);
+    }
+    
+    textarea {
+      width: 100%;
+      min-height: 400px;
+      background: var(--slatec-900);
+      color: var(--slatec-100);
+      border: 1px solid var(--slatec-700);
+      border-radius: 4px;
+      padding: 1rem;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 14px;
+      resize: vertical;
+    }
+    
+    textarea:focus {
+      outline: none;
+      border-color: var(--cursy-cyan-400);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+    
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    
+    .stat-card {
+      background: var(--slatec-800);
+      border: 1px solid var(--slatec-700);
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--cursy-green-400);
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: var(--slatec-400);
+      font-size: 0.9rem;
+    }
+    
+    .examples {
+      margin-top: 3rem;
+    }
+    
+    .example-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .example-tab {
+      padding: 0.75rem 1.5rem;
+      background: var(--slatec-800);
+      border: 1px solid var(--slatec-700);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .example-tab:hover {
+      background: var(--slatec-700);
+      border-color: var(--cursy-cyan-400);
+    }
+    
+    .example-tab.active {
+      background: var(--cursy-cyan-400);
+      color: var(--slatec-900);
+      border-color: var(--cursy-cyan-400);
+    }
+    
+    .example-content {
+      background: var(--slatec-800);
+      border: 1px solid var(--slatec-700);
+      border-radius: 8px;
+      padding: 1.5rem;
+      display: none;
+    }
+    
+    .example-content.active {
+      display: block;
+    }
+    
+    .code-block {
+      background: var(--slatec-900);
+      border: 1px solid var(--slatec-700);
+      border-radius: 4px;
+      padding: 1rem;
+      overflow-x: auto;
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    .attribution {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 2rem;
+      border-top: 1px solid var(--slatec-700);
+      color: var(--slatec-400);
+    }
+    
+    .attribution a {
+      color: var(--cursy-cyan-400);
+      text-decoration: none;
+    }
+    
+    .attribution a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <div class="hero">
+      <h1>🎨 TOON Parser & Converter</h1>
+      <p class="text-lg">Token-Oriented Object Notation - A more efficient, human-readable alternative to JSON</p>
+      <p class="text-sm" style="color: var(--slatec-400); margin-top: 0.5rem;">
+        30-60% token reduction · 4.8x faster parsing · Better readability
+      </p>
+    </div>
+
+    <div class="converter-grid">
+      <div class="converter-panel">
+        <h2>📄 JSON Input</h2>
+        <textarea id="jsonInput" placeholder='Enter JSON here...&#10;&#10;Example:&#10;{&#10;  "site": {&#10;    "id": "site_123",&#10;    "name": "My Site"&#10;  }&#10;}'></textarea>
+        <button class="btn btn-primary" style="margin-top: 1rem; width: 100%;" onclick="convertToToon()">Convert to TOON →</button>
+      </div>
+
+      <div class="converter-panel">
+        <h2>🎨 TOON Output</h2>
+        <textarea id="toonOutput" placeholder="TOON format will appear here..." readonly></textarea>
+        <button class="btn btn-secondary" style="margin-top: 1rem; width: 100%;" onclick="convertToJson()">← Convert to JSON</button>
+      </div>
+    </div>
+
+    <div class="stats" id="stats">
+      <div class="stat-card">
+        <div class="stat-value" id="jsonSize">0</div>
+        <div class="stat-label">JSON Characters</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="toonSize">0</div>
+        <div class="stat-label">TOON Characters</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="jsonTokens">0</div>
+        <div class="stat-label">JSON Tokens (est.)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="toonTokens">0</div>
+        <div class="stat-label">TOON Tokens (est.)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="reduction">0%</div>
+        <div class="stat-label">Token Reduction</div>
+      </div>
+    </div>
+
+    <div class="examples">
+      <h2 style="margin-bottom: 1rem;">💡 Examples</h2>
+      <div class="example-tabs">
+        <div class="example-tab active" onclick="showExample('simple')">Simple Object</div>
+        <div class="example-tab" onclick="showExample('nested')">Nested Object</div>
+        <div class="example-tab" onclick="showExample('array')">Array</div>
+        <div class="example-tab" onclick="showExample('complex')">Complex Site</div>
+      </div>
+
+      <div id="example-simple" class="example-content active">
+        <h3>Simple Object</h3>
+        <div class="code-block">
+<strong>JSON:</strong>
+{
+  "name": "My Site",
+  "id": "site_123",
+  "active": true
+}
+
+<strong>TOON:</strong>
+name: My Site
+id: site_123
+active: true
+        </div>
+        <button class="btn btn-ghost" style="margin-top: 1rem;" onclick="loadExample('simple')">Load Example</button>
+      </div>
+
+      <div id="example-nested" class="example-content">
+        <h3>Nested Object</h3>
+        <div class="code-block">
+<strong>JSON:</strong>
+{
+  "site": {
+    "id": "site_abc",
+    "name": "Portfolio",
+    "settings": {
+      "theme": "dark",
+      "plugins": ["plugin1", "plugin2"]
+    }
+  }
+}
+
+<strong>TOON:</strong>
+site
+  id: site_abc
+  name: Portfolio
+  settings
+    theme: dark
+    plugins
+      - plugin1
+      - plugin2
+        </div>
+        <button class="btn btn-ghost" style="margin-top: 1rem;" onclick="loadExample('nested')">Load Example</button>
+      </div>
+
+      <div id="example-array" class="example-content">
+        <h3>Array</h3>
+        <div class="code-block">
+<strong>JSON:</strong>
+{
+  "pages": [
+    { "id": "page_1", "title": "Home" },
+    { "id": "page_2", "title": "About" }
+  ]
+}
+
+<strong>TOON:</strong>
+pages
+  -
+    id: page_1
+    title: Home
+  -
+    id: page_2
+    title: About
+        </div>
+        <button class="btn btn-ghost" style="margin-top: 1rem;" onclick="loadExample('array')">Load Example</button>
+      </div>
+
+      <div id="example-complex" class="example-content">
+        <h3>Complex Site Structure</h3>
+        <div class="code-block">
+<strong>JSON:</strong>
+{
+  "id": "site_complex",
+  "name": "E-Commerce Site",
+  "pages": [
+    {
+      "id": "page_1",
+      "name": "Home",
+      "components": [
+        {
+          "id": "comp_1",
+          "type": "hero",
+          "props": {
+            "title": "Welcome",
+            "subtitle": "Shop now",
+            "titleFont": "Playfair Display"
+          }
+        }
+      ]
+    }
+  ]
+}
+
+<strong>TOON:</strong>
+id: site_complex
+name: E-Commerce Site
+pages
+  -
+    id: page_1
+    name: Home
+    components
+      -
+        id: comp_1
+        type: hero
+        props
+          title: Welcome
+          subtitle: Shop now
+          titleFont: Playfair Display
+        </div>
+        <button class="btn btn-ghost" style="margin-top: 1rem;" onclick="loadExample('complex')">Load Example</button>
+      </div>
+    </div>
+
+    <div class="attribution">
+      <p>
+        🎨 Styled with <a href="https://github.com/FutureVision-Labs/CURSY-Framework" target="_blank">CURSY Framework</a> · 
+        Built by <a href="https://github.com/FutureVision-Labs" target="_blank">FutureVision Labs</a>
+      </p>
+      <p style="margin-top: 0.5rem;">
+        <a href="https://github.com/FutureVision-Labs/toon-parser" target="_blank">⭐ Star on GitHub</a> · 
+        <a href="https://medium.com/medialesson/json-vs-toon-a-new-era-of-structured-input-19cbb7fc552b" target="_blank">📖 Read the Article</a>
+      </p>
+    </div>
+  </div>
+
+  <script src="toon-converter.js"></script>
+  <script>
+    // Example data
+    const examples = {
+      simple: {
+        json: { name: "My Site", id: "site_123", active: true }
+      },
+      nested: {
+        json: {
+          site: {
+            id: "site_abc",
+            name: "Portfolio",
+            settings: {
+              theme: "dark",
+              plugins: ["plugin1", "plugin2"]
+            }
+          }
+        }
+      },
+      array: {
+        json: {
+          pages: [
+            { id: "page_1", title: "Home" },
+            { id: "page_2", title: "About" }
+          ]
+        }
+      },
+      complex: {
+        json: {
+          id: "site_complex",
+          name: "E-Commerce Site",
+          pages: [
+            {
+              id: "page_1",
+              name: "Home",
+              components: [
+                {
+                  id: "comp_1",
+                  type: "hero",
+                  props: {
+                    title: "Welcome",
+                    subtitle: "Shop now",
+                    titleFont: "Playfair Display"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    };
+
+    function showExample(name) {
+      // Hide all examples
+      document.querySelectorAll('.example-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.example-tab').forEach(el => el.classList.remove('active'));
+      
+      // Show selected example
+      document.getElementById(`example-${name}`).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function loadExample(name) {
+      const example = examples[name];
+      document.getElementById('jsonInput').value = JSON.stringify(example.json, null, 2);
+      convertToToon();
+    }
+
+    function convertToToon() {
+      const jsonInput = document.getElementById('jsonInput').value.trim();
+      if (!jsonInput) return;
+
+      try {
+        const json = JSON.parse(jsonInput);
+        const toon = ToonConverter.jsonToToon(json);
+        document.getElementById('toonOutput').value = toon;
+        updateStats(jsonInput, toon);
+      } catch (error) {
+        document.getElementById('toonOutput').value = `Error: ${error.message}`;
+      }
+    }
+
+    function convertToJson() {
+      const toonInput = document.getElementById('toonOutput').value.trim();
+      if (!toonInput) return;
+
+      try {
+        const json = ToonConverter.toonToJson(toonInput);
+        document.getElementById('jsonInput').value = JSON.stringify(json, null, 2);
+        updateStats(JSON.stringify(json), toonInput);
+      } catch (error) {
+        alert(`Error: ${error.message}`);
+      }
+    }
+
+    function updateStats(jsonStr, toonStr) {
+      const jsonSize = jsonStr.length;
+      const toonSize = toonStr.length;
+      
+      // Rough token estimation (1 token ≈ 4 characters)
+      const jsonTokens = Math.ceil(jsonSize / 4);
+      const toonTokens = Math.ceil(toonSize / 4);
+      const reduction = jsonTokens > 0 ? ((jsonTokens - toonTokens) / jsonTokens * 100).toFixed(1) : 0;
+
+      document.getElementById('jsonSize').textContent = jsonSize.toLocaleString();
+      document.getElementById('toonSize').textContent = toonSize.toLocaleString();
+      document.getElementById('jsonTokens').textContent = jsonTokens.toLocaleString();
+      document.getElementById('toonTokens').textContent = toonTokens.toLocaleString();
+      document.getElementById('reduction').textContent = reduction + '%';
+      
+      // Color code reduction
+      const reductionEl = document.getElementById('reduction');
+      if (reduction > 0) {
+        reductionEl.style.color = 'var(--cursy-green-400)';
+      } else {
+        reductionEl.style.color = 'var(--cursy-orange-400)';
+      }
+    }
+
+    // Auto-convert on JSON input change
+    document.getElementById('jsonInput').addEventListener('input', function() {
+      const jsonInput = this.value.trim();
+      if (jsonInput && jsonInput.startsWith('{') || jsonInput.startsWith('[')) {
+        try {
+          const json = JSON.parse(jsonInput);
+          const toon = ToonConverter.jsonToToon(json);
+          document.getElementById('toonOutput').value = toon;
+          updateStats(jsonInput, toon);
+        } catch (e) {
+          // Silently fail during typing
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
