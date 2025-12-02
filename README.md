@@ -20,6 +20,12 @@
 
 Convert JSON to TOON and see real-time token reduction stats!
 
+## 📖 Read the Article
+
+**Deep dive on Medium:** [Why TOON Might Be Your Next JSON Replacement](https://medium.com/@caynesd/why-toon-might-be-your-next-json-replacement-and-how-to-get-started-be03f9738468)
+
+Learn about TOON's benefits, real-world results, and how to get started!
+
 ## 📦 Installation
 
 ```bash
@@ -265,13 +271,14 @@ Contributions welcome! Feel free to:
 
 ## 🔗 Resources
 
+- **📖 Our Medium Article:** [Why TOON Might Be Your Next JSON Replacement](https://medium.com/@caynesd/why-toon-might-be-your-next-json-replacement-and-how-to-get-started-be03f9738468)
+- **Original TOON Article:** https://medium.com/medialesson/json-vs-toon-a-new-era-of-structured-input-19cbb7fc552b
 - **TOON Format:** https://toonformat.dev/
-- **Original Article:** https://medium.com/medialesson/json-vs-toon-a-new-era-of-structured-input-19cbb7fc552b
 - **Performance Benchmarks:** https://www.toonparse.com/benchmarks
 
 ## 💬 Discussion
 
-Found this useful? Have questions? Drop a comment on the [Medium article](https://medium.com/medialesson/json-vs-toon-a-new-era-of-structured-input-19cbb7fc552b) or open an issue!
+Found this useful? Have questions? Drop a comment on [our Medium article](https://medium.com/@caynesd/why-toon-might-be-your-next-json-replacement-and-how-to-get-started-be03f9738468) or open an issue!
 
 ---
 
