@@ -22,12 +22,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/FutureVisionLabs/toon-parser.git"
+    "url": "https://github.com/FutureVision-Labs/toon-parser.git"
   },
   "bugs": {
-    "url": "https://github.com/FutureVisionLabs/toon-parser/issues"
+    "url": "https://github.com/FutureVision-Labs/toon-parser/issues"
   },
-  "homepage": "https://github.com/FutureVisionLabs/toon-parser#readme",
+  "homepage": "https://github.com/FutureVision-Labs/toon-parser#readme",
   "engines": {
     "node": ">=18.0.0"
   }
