@@ -91,6 +91,53 @@
       box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
     }
     
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 1rem;
+      font-family: inherit;
+    }
+    
+    .btn-primary {
+      background: var(--cursy-cyan-400);
+      color: var(--slatec-900);
+    }
+    
+    .btn-primary:hover {
+      background: var(--cursy-cyan-300);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(34, 211, 238, 0.3);
+    }
+    
+    .btn-secondary {
+      background: var(--slatec-700);
+      color: var(--slatec-100);
+      border: 1px solid var(--slatec-600);
+    }
+    
+    .btn-secondary:hover {
+      background: var(--slatec-600);
+      border-color: var(--cursy-cyan-400);
+      transform: translateY(-2px);
+    }
+    
+    .btn-ghost {
+      background: transparent;
+      color: var(--cursy-cyan-400);
+      border: 1px solid var(--cursy-cyan-400);
+    }
+    
+    .btn-ghost:hover {
+      background: var(--cursy-cyan-400);
+      color: var(--slatec-900);
+    }
+    
     .stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
